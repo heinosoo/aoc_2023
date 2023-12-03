@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func Part2(input <-chan string, output chan string) {
+func Part2(input <-chan string, output chan<- string) {
 	sum := 0
 	for line := range input {
 		code := parse2(line)
@@ -17,7 +17,6 @@ func Part2(input <-chan string, output chan string) {
 
 	log.Println(sum)
 	output <- strconv.Itoa(sum)
-	close(output)
 }
 
 func parse2(line string) int {

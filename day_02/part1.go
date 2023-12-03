@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Part1(input <-chan string, output chan string) {
+func Part1(input <-chan string, output chan<- string) {
 	sum := 0
 	for line := range input {
 		sum += gameNumberIfPossible(line)
@@ -14,7 +14,6 @@ func Part1(input <-chan string, output chan string) {
 
 	log.Println(sum)
 	output <- strconv.Itoa(sum)
-	close(output)
 }
 
 func gameNumberIfPossible(line string) int {

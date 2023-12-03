@@ -4,7 +4,7 @@ import (
 	"strconv"
 )
 
-func Part1(input <-chan string, output chan string) {
+func Part1(input <-chan string, output chan<- string) {
 	sum := 0
 	for line := range input {
 		code := parse(line)
@@ -13,7 +13,6 @@ func Part1(input <-chan string, output chan string) {
 	}
 
 	output <- strconv.Itoa(sum)
-	close(output)
 }
 
 func parse(line string) int {

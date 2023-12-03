@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func TestPart(t *testing.T, testee func(<-chan string, chan string), pathSuffix string) {
+func TestPart(t *testing.T, testee func(<-chan string, chan<- string), pathSuffix string) {
 	log.Println("\n\nTesting: ", pathSuffix)
 	outputPath := "output_" + pathSuffix
 	expectedPath := "expected_" + pathSuffix
@@ -21,6 +21,7 @@ func TestPart(t *testing.T, testee func(<-chan string, chan string), pathSuffix 
 			withTiming(testFileName, func() {
 				testee(input, output)
 			})
+			close(output)
 			writeFile(path.Join(outputPath, testFileName), output)
 
 			// Skip if there is no expected output

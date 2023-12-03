@@ -1,5 +1,4 @@
 package main
 
-func Part2(input <-chan string, output chan string) {
-	close(output)
+func Part2(input <-chan string, output chan<- string) {
 }

@@ -7,26 +7,20 @@ import (
 	aoc_utils "github.com/heinosoo/aoc_2023/aoc_utils"
 )
 
-func Part2(input <-chan string, output chan string) {
+func Part2(input <-chan string, output chan<- string) {
 	schematic := aoc_utils.CreateMatrixFromInputChannel(input).Pad(".")
-	schematic.Print()
-
 	partNumbers := findPartNumbers(schematic)
 	potentialGears := findPotentialGears(schematic, partNumbers)
-
-	log.Println(potentialGears)
 
 	sum := 0
 	for _, partNumbers := range potentialGears {
 		if len(partNumbers) == 2 {
-			log.Println(partNumbers)
 			sum += partNumbers[0].value * partNumbers[1].value
 		}
 	}
 
 	log.Println(sum)
 	output <- strconv.Itoa(sum)
-	close(output)
 }
 
 type Gears map[[2]int][]PartNumber

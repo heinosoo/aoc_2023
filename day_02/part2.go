@@ -8,7 +8,7 @@ import (
 	"golang.org/x/exp/maps"
 )
 
-func Part2(input <-chan string, output chan string) {
+func Part2(input <-chan string, output chan<- string) {
 	sum := 0
 	for line := range input {
 		sum += minimumCubePower(line)
@@ -16,7 +16,6 @@ func Part2(input <-chan string, output chan string) {
 
 	log.Println(sum)
 	output <- strconv.Itoa(sum)
-	close(output)
 }
 
 type CubeSet map[string]int

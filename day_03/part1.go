@@ -9,7 +9,7 @@ import (
 	aoc_utils "github.com/heinosoo/aoc_2023/aoc_utils"
 )
 
-func Part1(input <-chan string, output chan string) {
+func Part1(input <-chan string, output chan<- string) {
 	schematic := aoc_utils.CreateMatrixFromInputChannel(input).Pad(".")
 	partNumbers := findPartNumbers(schematic)
 
@@ -20,7 +20,6 @@ func Part1(input <-chan string, output chan string) {
 
 	log.Println("\n", sum)
 	output <- strconv.Itoa(sum)
-	close(output)
 }
 
 type PartNumber struct {
