@@ -2,6 +2,8 @@ package aoc_utils
 
 import (
 	"fmt"
+	"log"
+	"strconv"
 
 	"golang.org/x/exp/constraints"
 )
@@ -77,4 +79,12 @@ func Sum[T constraints.Integer | constraints.Float](vars ...T) T {
 		s += n
 	}
 	return s
+}
+
+func StringToInt(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		log.Fatal("Error converting string to int: ", err)
+	}
+	return i
 }
