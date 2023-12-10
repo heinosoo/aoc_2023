@@ -88,3 +88,12 @@ func StringToInt(s string) int {
 	}
 	return i
 }
+
+func Contains[T comparable](array []T, element T) bool {
+	for _, arrayElement := range array {
+		if arrayElement == element {
+			return true
+		}
+	}
+	return false
+}
